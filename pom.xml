@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.smt.group.f</groupId>
+    <artifactId>selenium-assignment</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Selenium Assignment</name>
+    <description>Maven project for Selenium testing with Chrome driver and Excel</description>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <selenium.version>3.6.0</selenium.version>
+        <poi.version>5.2.3</poi.version>
+    </properties>
+
+    <dependencies>
+        <!-- Selenium WebDriver - Using local JAR from SeleniumLabCapsuleJars folder -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/SeleniumLabCapsuleJars/client-combined-3.6.0.jar</systemPath>
+        </dependency>
+
+        <!-- Selenium Server Standalone - Using local JAR from SeleniumLabCapsuleJars folder -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server-standalone</artifactId>
+            <version>${selenium.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/SeleniumLabCapsuleJars/selenium-server-standalone-3.6.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <!-- Apache Commons IO - Required by POI, explicit version to resolve conflicts -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>com.smt.group.f.assignment.SeleniumAutomation</mainClass>
+                    <includePluginDependencies>false</includePluginDependencies>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                    <classpathScope>runtime</classpathScope>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${project.basedir}/SeleniumLabCapsuleJars/client-combined-3.6.0.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/SeleniumLabCapsuleJars/selenium-server-standalone-3.6.0.jar</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
