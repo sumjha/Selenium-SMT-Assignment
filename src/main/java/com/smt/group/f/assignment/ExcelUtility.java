@@ -52,6 +52,12 @@ public class ExcelUtility {
         }
     }
 
+
+    // set test status
+    public void setTestStatus(int row, String status) {
+        this.sheet.getRow(row).getCell(STATUS_COLUMN).setCellValue(status);
+    }
+
     // get cell value
     public String getCellValue(int row, int column) {
         return this.sheet.getRow(row).getCell(column).getStringCellValue();
